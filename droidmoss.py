@@ -10,6 +10,21 @@ from fp_generator import Fp_Generator
 from apkbin import ApkBin
 from apksmali import ApkSmali
 
+def load_apk_files(importDir):
+    apkFiles = []
+
+    dirWalk = os.walk(importDir)
+
+    for root, dirs, files in dirWalk:
+        for oneFile in files:
+            if oneFile[-4:] == '.apk':
+                apkFiles.append(root + '/' + oneFile)
+
+    return apkFiles
+
+def print_apk_files(apkFiles):
+    for apkFile in apkFiles:
+        print apkFile
 
 if __name__ == '__main__':
     opts, args = getopt.getopt(sys.argv[1:], 'd:w:r:o:')
@@ -82,20 +97,3 @@ if __name__ == '__main__':
 
     if doOut == True:
         fileHandle.close()
-
-
-def load_apk_files(importDir):
-    apkFiles = []
-
-    dirWalk = os.walk(importDir)
-
-    for root, dirs, files in dirWalk:
-        for oneFile in files:
-            if oneFile[-4:] == '.apk':
-                apkFiles.append(root + '/' + oneFile)
-
-    return apkFiles
-
-def print_apk_files(apkFiles):
-    for apkFile in apkFiles:
-        print apkFile
