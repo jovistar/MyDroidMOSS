@@ -8,23 +8,27 @@ def readLibs(file_path):
     file.close()
 
     return rst_list
-    
+
 def filterLibs(root_path, libs):
+    if root_path[-1:] != '/':
+        root_path = root_path + '/'
+
     pack_list = list()
     packs = list()
-    for dir in os.walk(root_path):
-        if len(dir[2]) != 0:
-            str = dir[0]
-            str = str.replace("\\", "/")
-            beg_index = str.index("/smali/")
-            #str = str[beg_index+7:]
-            #print "packages",str
-            flag = True
-            for s in libs:
-                if str.startswith(s, beg_index +7):
-                    flag = False
-                    break
-            if flag:
-                pack_list.append(str)
 
-    return pack_list        
+    for root, dirs, files in os.walk(root_path):
+        if len(files) == 0:
+            continue
+
+        flag = True
+
+        for s in libs:
+            subDir = root[len(root_path):]
+            if subDir.startswith(s):
+                flag = False
+                break
+
+        if flag == True:
+            pack_list.append(root)
+
+    return pack_list

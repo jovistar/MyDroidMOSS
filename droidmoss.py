@@ -59,12 +59,12 @@ if __name__ == '__main__':
             print apkFile + ' is not valid apk file!'
             continue
 
-        apkSmali = ApkSmali('./tmp/classes.dex', './tmp')
+        apkSmali = ApkSmali('classes.dex', './tmp')
         if apkSmali.convert() != 0:
             print apkFile + ' has no valid classes.dex!'
             continue
 
-        apkPacks = LibsOP.filterLibs('./tmp/smali', adLibs)
+        apkPacks = LibsOP.filterLibs('./tmp/smali/', adLibs)
 
         apkSeqs = Utils.getSeqFromSmaliDir(apkPacks, opCodes)
 
