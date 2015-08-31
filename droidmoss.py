@@ -72,6 +72,8 @@ if __name__ == '__main__':
         for apkSeq in apkSeqs:
             seq = seq + apkSeq
 
+        print seq
+
         apkFp = fpGenerator.do_generate(seq)
         apkResults[apkFile] = apkFp
 
