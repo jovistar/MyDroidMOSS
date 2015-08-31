@@ -36,7 +36,6 @@ def SimScore(fp1, fp2):
     sim_score *= 100
     return sim_score
 
-#O(len(str2))空间复杂度，计算编辑距离
 def CalDistance(str1, str2):
 	matrix = []
 	i = 0
@@ -44,14 +43,15 @@ def CalDistance(str1, str2):
 	len2 = len(str2)
 	while i < (len2+1):
 		matrix.append(i)
-		i++
+		i = i + 1
 	i = 0
 	while i < len1:
 		tmp_i = matrix[0]
 		matrix[0] += 1
 		j = 0
 		while j < len2:
-			tmp_j = matrix[j+1]
+			tmp_j = tmp_i
+			tmp_i = matrix[j+1]
 			if str1[i] == str2[j]:
 				matrix[j+1] = tmp_j
 			else:
