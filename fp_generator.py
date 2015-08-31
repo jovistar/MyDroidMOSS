@@ -6,6 +6,10 @@ class Fp_Generator(object):
 		self.windowSize = windowSize
 		self.resetPointValue = resetPointValue
 
+		self.hashValue = {}
+		for x in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']:
+			self.hashValue[x] = int(x, 16)
+
 	def do_generate(self, inputSeq):
 		finalFp = ''
 
@@ -45,7 +49,15 @@ class Fp_Generator(object):
 		return finalFp
 
 	def cal_hash(self, inputHash):
-		return int(inputHash, 16)
+		inputHashHead = 0
+		inputHashTail = len(inputHash)
+
+		hashValue = 0
+		while inputHashHead != inputHashTail:
+			hashValue = hashValue + self.hashValue[inputHash[inputHashHead]]
+			inputHashHead = inputHashHead + 1
+
+		return hashValue
 
 	def get_hash(self, inputSeq):
 		return hashlib.md5(inputSeq).hexdigest()
