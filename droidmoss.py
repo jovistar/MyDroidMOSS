@@ -76,7 +76,7 @@ if __name__ == '__main__':
         apkResults[apkFile] = apkFp
 
         print apkFile + ':\n'
-        print apkFp
+        #print apkFp
 
     doOut = False
     if outputFile != '':
