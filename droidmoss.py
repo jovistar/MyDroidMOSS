@@ -76,7 +76,7 @@ if __name__ == '__main__':
         apkResults[apkFile] = apkFp
 
         print apkFile + ':\n'
-        #print apkFp
+        print apkFp
 
     doOut = False
     if outputFile != '':
@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 continue
 
             resultCache.append([dstFile, srcFile])
-            simScore = Sim.CalDistance(apkResults[srcFile], apkResults[dstFile])
+            simScore = Sim.SimScore(apkResults[srcFile], apkResults[dstFile])
 
             print srcFile + '    ' + dstFile + '    ' + '%d' % simScore
             if doOut == True:
