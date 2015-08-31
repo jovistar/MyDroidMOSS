@@ -68,7 +68,11 @@ if __name__ == '__main__':
 
         apkSeqs = Utils.getSeqFromSmaliDir(apkPacks, opCodes)
 
-        apkFp = fpGenerator.do_generate(apkSeqs)
+        seq = ''
+        for apkSeq in apkSeqs:
+            seq = seq + apkSeq
+
+        apkFp = fpGenerator.do_generate(seq)
         apkResults[apkFile] = apkFp
 
         print apkFile + ':\n'
